@@ -127,7 +127,12 @@ else:
                 "Cliente:N",
                 title="Clientes",
                 sort=None,
-                axis=alt.Axis(labelAngle=-30, labelLimit=220),
+                axis=alt.Axis(
+                    labelAngle=-45,
+                    labelOverlap=False,
+                    labelLimit=0,
+                    labelFontSize=11,
+                ),
             ),
             y=alt.Y(
                 "Facturación (€):Q",
@@ -140,7 +145,7 @@ else:
                 alt.Tooltip("Facturación (€):Q", title="Facturación", format=",.2f"),
             ],
         )
-        .properties(height=400)
+        .properties(height=440)
     )
     st.altair_chart(
         grafica_facturacion,
