@@ -1,15 +1,50 @@
 import streamlit as st
 
-from facturas_db import guardar_datos, inicializar_base_datos
+from facturas_db import guardar_datos, inicializar_base_datos, obtener_clientes
 
 inicializar_base_datos()
 
 st.title("Introducir datos")
 st.write("Registra los datos del cliente y añade uno o varios artículos a la factura.")
 
+clientes = obtener_clientes()
+clientes_por_codigo = {int(cliente["codigo"]): cliente for cliente in clientes}
+codigo_seleccionado = st.selectbox(
+    "Cliente por código (opcional)",
+    [None, *clientes_por_codigo],
+    format_func=lambda codigo: (
+        "Introducir cliente manualmente"
+        if codigo is None
+        else f"{codigo:05d} · {clientes_por_codigo[codigo]['nombre']} · {clientes_por_codigo[codigo]['cif']}"
+    ),
+    key="cliente_codigo_factura",
+    help="Al elegir un código se cargan el nombre y el CIF del registro.",
+)
+cliente_elegido = clientes_por_codigo.get(codigo_seleccionado) if codigo_seleccionado else None
+
 with st.form("formulario_factura"):
-    cliente = st.text_input("Cliente", placeholder="Nombre o razón social", required=True)
-    cif = st.text_input("CIF", placeholder="CIF del cliente", required=True)
+    cliente = st.text_input(
+        "Cliente",
+        value=str((cliente_elegido or {}).get("nombre", "")),
+        placeholder="Nombre o razón social",
+        required=True,
+        key=f"nombre_cliente_factura_{codigo_seleccionado or 'manual'}",
+    )
+    cif = st.text_input(
+        "CIF",
+        value=str((cliente_elegido or {}).get("cif", "")),
+        placeholder="CIF del cliente",
+        required=True,
+        key=f"cif_cliente_factura_{codigo_seleccionado or 'manual'}",
+    )
+    if cliente_elegido:
+        datos_contacto = [
+            str(cliente_elegido.get(campo) or "").strip()
+            for campo in ("telefono", "email", "direccion", "codigo_postal", "ciudad", "provincia", "forma_pago")
+            if str(cliente_elegido.get(campo) or "").strip()
+        ]
+        if datos_contacto:
+            st.caption(" · ".join(datos_contacto))
     fecha = st.date_input("Fecha")
     numero_factura = st.text_input("Número de factura", required=True)
     st.markdown("**Artículos de la factura**")
@@ -98,5 +133,6 @@ if guardar:
             fecha=fecha.isoformat(),
             numero_factura=numero_factura,
             articulos=articulos,
+            cliente_codigo=int(codigo_seleccionado) if codigo_seleccionado is not None else None,
         )
         st.success(f"Datos de la factura {numero_factura} guardados correctamente.")

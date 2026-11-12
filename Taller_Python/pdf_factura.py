@@ -98,6 +98,19 @@ def generar_pdf_factura(factura: dict[str, Any]) -> bytes:
     )
     styles.add(
         ParagraphStyle(
+            "InvoiceStatus",
+            parent=styles["Normal"],
+            fontName="Helvetica-Bold",
+            fontSize=9,
+            leading=12,
+            textColor={
+                "Pagado": colors.HexColor("#16835D"),
+                "Vencido": colors.HexColor("#C2413B"),
+            }.get(str(factura.get("estado_pago", "Pendiente")), colors.HexColor("#B7791F")),
+        )
+    )
+    styles.add(
+        ParagraphStyle(
             "InvoiceRight",
             parent=styles["InvoiceBody"],
             alignment=TA_RIGHT,
@@ -154,6 +167,21 @@ def generar_pdf_factura(factura: dict[str, Any]) -> bytes:
         body(factura["cif"]),
         body(factura["fecha"]),
     ]
+    if factura.get("cliente_codigo"):
+        customer.append(body(f"Código de cliente: {int(factura['cliente_codigo']):05d}"))
+    datos_cliente = factura.get("datos_cliente") or {}
+    for campo, etiqueta in (
+        ("direccion", "Dirección"),
+        ("codigo_postal", "Código postal"),
+        ("ciudad", "Ciudad"),
+        ("provincia", "Provincia"),
+        ("telefono", "Teléfono"),
+        ("email", "Correo electrónico"),
+        ("forma_pago", "Forma de pago"),
+    ):
+        valor = str(datos_cliente.get(campo) or "").strip()
+        if valor:
+            customer.append(body(f"{etiqueta}: {valor}"))
     company_details = [
         Paragraph("EMPRESA:", styles["InvoiceLabel"]),
         body("Enrique Santisteban"),
@@ -260,6 +288,10 @@ def generar_pdf_factura(factura: dict[str, Any]) -> bytes:
         parties,
         Spacer(1, 18 * mm),
         Paragraph(f"Factura {escape(str(factura['numero_factura']))}", styles["InvoiceTitle"]),
+        Paragraph(
+            f"Estado: {escape(str(factura.get('estado_pago', 'Pendiente')))}",
+            styles["InvoiceStatus"],
+        ),
         Spacer(1, 7 * mm),
         detail,
         Spacer(1, 12 * mm),
