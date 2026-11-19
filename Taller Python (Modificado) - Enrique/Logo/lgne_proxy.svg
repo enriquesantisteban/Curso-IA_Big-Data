@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="LGNE PROXY">
+<rect x="20" y="20" width="230" height="230" rx="48" fill="#142B45"/>
+<path d="M78 77v103h114M78 132l89-55" fill="none" stroke="#11A6A1" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M78 132l89-55" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+<circle cx="78" cy="77" r="11" fill="#E9AE55"/><circle cx="78" cy="180" r="11" fill="#11A6A1"/><circle cx="192" cy="180" r="11" fill="#E9AE55"/><circle cx="167" cy="77" r="11" fill="#11A6A1"/>
+<rect x="272" y="72" width="6" height="126" rx="3" fill="#E9AE55"/>
+<text x="300" y="145" font-family="Segoe UI, Arial, sans-serif" font-size="126" font-weight="700" fill="#142B45">LGNE</text>
+<text x="304" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="65" font-weight="700" letter-spacing="12" fill="#11A6A1">PROXY</text>
+</svg>
