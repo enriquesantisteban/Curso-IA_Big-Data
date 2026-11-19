@@ -1,0 +1,31 @@
+Quiero que hagas un proyecto con NodeJS que sea muy sencillo, utilizando la menor cantidad de archivos, código y módulos. 
+El programa debe utilizar el modelo qwen que tengo instalado ahora mismo en mi ollama. 
+El programa debe ocupar lo mínimo posible, ser superlegible y fácil de entender. 
+El programa debe mostrar una página web (que sea solo una chatbox) que me permita hablar con qwen mandando y recibiendo respuestas, mostrándolas como si fuese ChatGPT.
+
+
+
+
+Quiero que, utilizando el chat de este proyecto, me crees una landing page sobre un gimnasio con diferentes cuotas, y además tiene varios entrenadores personales que ofrece sus servicios con diferentes planes (básico, intermedio, premium), cada uno con diferentes precios. Este gimnasio tiene varias máquinas que se pueden usar, tanto para tren superior como inferior, además cuenta de piscina cubierta y pistas exteriores (fútbol sala, tenis, baloncesto, pádel) y cada una de ellas tiene un precio de alquiler a parte de la cuota que escoja uno. 
+Solo quiero una pequeña landing page, simple y con poco estilos, y que abajo a la derecha tenga este chatbox para preguntarle cosas sobre la página que has creado.
+
+
+Ahora quiero que debajo de la sección de Alquileres, me crees una sección de formulario de contacto, donde el cliente pueda introducir su nombre, un scroll para elegir día y hora y mensaje. El botón de enviar quiero que se llame Agendar una cita.
+Al pulsar sobre el botón quiero que aparezca un mensaje de "Cita agendada para [nombre] el día [día] a la hora [hora]
+Además, la sección de alquileres quiero también que la pongas en tarjetas, igual que las demás.
+
+
+
+Me gustaría que a través del chatbox pueda agendar una cita, que el propio chatbox me responda con un mensaje de que ha sido agendada.
+Te comento cómo debería ser, siendo P la persona y C el chat:
+P: Quiero agendar una cita
+C: ¡Genial! ¿Cuál es tu nombre?
+P: [Nombre]
+C: ¿Qué día de la semana quieres agendar la cita? Recuerda que estamos disponibles de lunes a domingo
+P: [día]
+C: Perfecto, y por último. ¿A qué hora quieres venir? Tenemos citas cada hora, desde las 9:00 hasta las 20:00
+P: [hora]
+C: ¡Perfecto! Se ha agendado una cita para [nombre], el día [día] a las [hora]
+
+Si el usuario pone las 9, que el chatbox tome como las 9:00, así como para cualquier hora que introduzca, que añada :00 a la hora establecida por el usuario
+

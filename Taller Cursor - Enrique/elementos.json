@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "titulo": "Sala de Máquinas",
+    "descripcion": "Equipamiento completo de última generación para tren superior e inferior."
+  },
+  {
+    "id": 2,
+    "titulo": "Piscina Cubierta",
+    "descripcion": "Disponible para nado libre, clases dirigidas y relajación."
+  },
+  {
+    "id": 3,
+    "titulo": "Entrenamiento Personal",
+    "descripcion": "Planes Básico, Intermedio y Premium adaptados a tus objetivos individuales."
+  },
+  {
+    "id": 4,
+    "titulo": "Pistas de Pádel",
+    "descripcion": "Alquiler por horas de pistas exteriores de césped artificial."
+  },
+  {
+    "id": 5,
+    "titulo": "Fútbol Sala",
+    "descripcion": "Cancha polideportiva exterior disponible para reservar con amigos."
+  },
+  {
+    "id": 6,
+    "titulo": "Clases de Tenis",
+    "descripcion": "Reserva de pistas por horas y opción de entrenamientos específicos."
+  },
+  {
+    "id": 7,
+    "titulo": "Zona de Baloncesto",
+    "descripcion": "Pista exterior habilitada para partidos y práctica de tiro."
+  }
+]
